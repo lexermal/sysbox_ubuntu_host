@@ -5,6 +5,7 @@ if [[ ! -z "${SYSBOX_HOST}" ]] && [[ "$SYSBOX_HOST" != "$HOSTNAME" ]]; then
   echo "Setting hostname to '$SYSBOX_HOST'."
   sudo echo "$SYSBOX_HOST" > /etc/hostname
   echo $(hostname -I | cut -d\  -f1) $SYSBOX_HOST | sudo tee -a /etc/hosts
+  echo 127.0.0.1 $SYSBOX_HOST | sudo tee -a /etc/hosts
 fi
 
 # check if admin password variable is set and change the name if it is set
