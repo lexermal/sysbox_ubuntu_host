@@ -14,10 +14,10 @@ The image is based on Ubuntu 20.04 TLS.
 The container can only be executed if SYSBOX is installed!
 
 ## Building the image
-``docker build . -t mw685/sysbox_ubuntu_host:0.4.0 -t mw685/sysbox_ubuntu_host:latest``
+``docker build . -t mw685/sysbox_ubuntu_host:0.5.0 -t mw685/sysbox_ubuntu_host:latest``
 
 ## Pushing the image
-``docker push mw685/sysbox_ubuntu_host:0.4.0 && docker push mw685/sysbox_ubuntu_host:latest``
+``docker push mw685/sysbox_ubuntu_host:0.5.0 && docker push mw685/sysbox_ubuntu_host:latest``
 
 ## Running the image
 

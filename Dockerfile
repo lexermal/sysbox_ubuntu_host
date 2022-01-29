@@ -18,6 +18,7 @@ RUN apt-get update &&                            \
             git                                  \
             keychain                             \
             apt-utils                            \
+            wget                                 \
             udev                                 \
             curl
 
@@ -54,6 +55,18 @@ RUN apt-get update && apt-get install --no-install-recommends -y      \
     mkdir /home/admin/.ssh &&                                         \
     chown admin:admin /home/admin/.ssh
 
+# Install docker-compose
+RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
+RUN ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+RUN docker-compose -v
+
+# Install docker-complose bash completion
+RUN curl \
+    -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/bash/docker-compose \
+    -o /etc/bash_completion.d/docker-compose
+
+    
 # Prepare sysbox entry script
 RUN mkdir /sysbox
 COPY ./entrypoint.sh /sysbox
