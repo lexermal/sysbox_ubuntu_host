@@ -19,6 +19,7 @@ RUN apt-get update &&                            \
             keychain                             \
             apt-utils                            \
             wget                                 \
+            cron                                 \
             udev                                 \
             curl
 
