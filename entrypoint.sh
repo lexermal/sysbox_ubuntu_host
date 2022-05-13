@@ -22,8 +22,9 @@ if [ -d "/sysbox/certificate" ] ; then
   if [ -f "$FILE" ]; then
     echo "Certificate was already added."
   else
-    sudo chmod 600 /sysbox/certificate/cert.private
-    echo 'eval $(keychain -q --eval /sysbox/certificate/cert.private)' >> /home/admin/.bashrc
+    cp /sysbox/certificate/cert.private /tmp/cert.private
+    sudo chmod 600 /tmp/cert.private
+    echo 'eval $(keychain -q --eval /tmp/cert.private)' >> /home/admin/.bashrc
     touch /sysbox/cert_added
     echo "Added certificate to system."
   fi
