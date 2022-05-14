@@ -25,18 +25,20 @@ fi
 if [ -d "/sysbox/certificate" ] ; then
   echo "Found a ssh certificate."
 
-  FILE=/sysbox/cert_added
-  if [ -f "$FILE" ]; then
+  if [ -d "/sysbox/cert_added" ]; then
     echo "Certificate was already added."
   else
-    cp /sysbox/certificate/cert.private /tmp/cert.private
-    sudo chmod 600 /tmp/cert.private
-    echo 'eval $(keychain -q --eval /tmp/cert.private)' >> /home/admin/.bashrc
-    touch /sysbox/cert_added
+    sudo mkdir /sysbox/cert_added
+    sudo cp /sysbox/certificate/* /sysbox/cert_added/
+
+    sudo chmod 777 /sysbox/cert_added -Rf
+
+    echo 'eval $(keychain -q --eval /sysbox/cert_added/cert.private)' >> /home/admin/.bashrc
+
     echo "Added certificate to system."
   fi
 fi
 
 
 # start the comandline
-exec /sbin/init --log-level=err
+exec /sbin/init --log-level=info
